@@ -1,0 +1,11 @@
+version: '3'
+env:
+  TaskInfo: "Create"
+
+tasks:
+  build-it:
+    cmds:
+      - kind create cluster --name=quick-cluster --config quick-cluster.yaml
+  destroy-it:
+    cmds:
+      - kind delete cluster --name quick-cluster
