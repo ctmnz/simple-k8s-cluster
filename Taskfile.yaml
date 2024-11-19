@@ -5,7 +5,7 @@ env:
 tasks:
   build-it:
     cmds:
-      - kind create cluster --name=quick-cluster --config quick-cluster.yaml
+      - kind create cluster --name=simple-cluster --config simple-cluster.yaml
   destroy-it:
     cmds:
-      - kind delete cluster --name quick-cluster
+      - kind delete cluster --name simple-cluster
