@@ -3,4 +3,33 @@ apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
 - role: control-plane
 - role: worker
-- role: worker
+  kubeadmConfigPatches:
+    - |
+      kind: InitConfiguration
+      nodeRegistration:
+        kubeletExtraArgs:
+          node-labels: "ingress-ready=true"
+#### Nginx extraPortMappings
+  extraPortMappings:
+  - containerPort: 80
+    hostPort: 80
+    protocol: TCP
+  - containerPort: 443
+    hostPort: 443
+    protocol: TCP
+
+
+#### Istio extraPortMappings
+#  extraPortMappings:
+#  - containerPort: 30000
+#    hostPort: 80
+#    listenAddress: "127.0.0.1"
+#    protocol: TCP
+#  - containerPort: 31000
+#    hostPort: 443
+#    listenAddress: "127.0.0.1"
+#    protocol: TCP
+#  - containerPort: 32000
+#    hostPort: 15021
+#    listenAddress: "127.0.0.1"
+#    protocol: TCP
