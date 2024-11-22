@@ -9,3 +9,10 @@ tasks:
   destroy-it:
     cmds:
       - kind delete cluster --name simple-cluster
+  lab-it:
+    cmds:
+      - echo "Write your essential build commands here"
+  test-it:
+    cmds:
+      - echo "Write your tests here"
+
