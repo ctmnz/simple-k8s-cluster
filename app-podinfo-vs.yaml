@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualServer
+metadata:
+  name: podinfo-vs
+  namespace: ingress-nginx
+spec:
+  host: podinfo.127.0.0.1.nip.io
+  upstreams:
+  - name: podinfo
+    service: app-service
+    port: 9898
+    use-cluster-ip: true
+  routes:
+  - path: /
+    action:
+      proxy:
+        upstream: podinfo
+        requestHeaders:
+          set:
+          - name: Host
+            value: app-service.app01.svc.cluster.local
