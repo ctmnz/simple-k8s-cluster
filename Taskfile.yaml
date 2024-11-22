@@ -9,3 +9,14 @@ tasks:
   destroy-it:
     cmds:
       - kind delete cluster --name simple-cluster
+  lab-it:
+    cmds:
+      # install the load balancer
+      - go install sigs.k8s.io/cloud-provider-kind@latest
+      - echo "in separate console start the load balancer in the foreground with sudo cloud-provider-kind"
+      - echo "continue with 'task lab-it-2'"
+  lab-it-2:
+    cmds:
+      - kubectl apply -f https://kind.sigs.k8s.io/examples/loadbalancer/usage.yaml
+      - bash ./test-it.sh
+
