@@ -14,12 +14,12 @@ tasks:
       - echo "Write your essential build commands here"
       - kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.29.1/manifests/tigera-operator.yaml
       - kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.29.1/manifests//custom-resources.yaml
-  test-it:
-    cmds:
       - kubectl create namespace source-namespace
       - kubectl create namespace target-namespace
       - kubectl apply -f source-pod.yaml
       - kubectl apply -f target-pod.yaml
+  test-it:
+    cmds:
       - kubectl exec -it source-pod -n source-namespace -- curl http://$(kubectl get po target-pod -n target-namespace -o jsonpath='{.status.podIP}')
   test-it-2:
     cmds:
