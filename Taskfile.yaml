@@ -12,7 +12,19 @@ tasks:
   lab-it:
     cmds:
       - echo "Write your essential build commands here"
+      - kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.29.1/manifests/tigera-operator.yaml
+      - kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.29.1/manifests//custom-resources.yaml
   test-it:
     cmds:
-      - echo "Write your tests here"
+      - kubectl create namespace source-namespace
+      - kubectl create namespace target-namespace
+      - kubectl apply -f source-pod.yaml
+      - kubectl apply -f target-pod.yaml
+      - kubectl exec -it source-pod -n source-namespace -- curl http://$(kubectl get po target-pod -n target-namespace -o jsonpath='{.status.podIP}')
+  test-it-2:
+    cmds:
+      - kubectl exec -it source-pod -n source-namespace -- curl http://$(kubectl get po target-pod -n target-namespace -o jsonpath='{.status.podIP}')
+  ref-it:
+    cmds:
+      - echo "https://vincent0426.medium.com/setting-up-a-kubernetes-cluster-with-calico-cni-and-applying-network-policies-c196b4f25687"
 
