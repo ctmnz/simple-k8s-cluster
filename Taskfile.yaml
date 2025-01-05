@@ -11,7 +11,7 @@ tasks:
       - kind delete cluster --name simple-cluster
   lab-it:
     cmds:
-      - echo "Write your essential build commands here"
+      - kubectl apply -f k8s/pv.yaml
   test-it:
     cmds:
       - echo "Write your tests here"
