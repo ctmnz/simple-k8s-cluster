@@ -12,6 +12,19 @@ tasks:
   lab-it:
     cmds:
       - echo "Write your essential build commands here"
+      - helm repo add awx-operator https://ansible-community.github.io/awx-operator-helm/
+      - helm install my-awx-operator awx-operator/awx-operator
+      - kubectl wait --for=condition=ready --timeout=360s pod -l helm.sh/chart=awx-operator
+      - kubectl apply -f ./aws-cr.yaml
+      - sleep 10
+      - kubectl wait --for=condition=ready --timeout=360s pod -l app.kubernetes.io/instance=postgres-15-awx-demo
+      - sleep 15
+      - kubectl wait --for=condition=ready --timeout=360s pod -l app.kubernetes.io/name=awx-demo-web
+      - sleep 2
+      - kubectl wait --for=condition=ready --timeout=360s pod -l app.kubernetes.io/name=awx-demo-task
+      - echo "user admin"
+      - echo "password "
+      - kubectl get secrets awx-demo-admin-password -o jsonpath='{.data.password}' | base64 -d
   test-it:
     cmds:
       - echo "Write your tests here"
