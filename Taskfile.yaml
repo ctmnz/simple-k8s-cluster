@@ -3,16 +3,16 @@ env:
   TaskInfo: "Create"
 
 tasks:
-  build-it:
+  build:
     cmds:
       - kind create cluster --name=simple-cluster --config simple-cluster.yaml
-  destroy-it:
+  destroy:
     cmds:
       - kind delete cluster --name simple-cluster
-  lab-it:
+  lab:
     cmds:
-      - echo "Write your essential build commands here"
-  test-it:
+      - echo "poc lab commands"
+  test:
     cmds:
-      - echo "Write your tests here"
+      - echo "tests commmands"
 
