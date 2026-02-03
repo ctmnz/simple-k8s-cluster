@@ -1,0 +1,17 @@
+apiVersion: kafka.strimzi.io/v1
+kind: KafkaConnector
+metadata:
+  name: my-sink-connector
+  labels:
+    strimzi.io/cluster: my-connect-cluster
+spec:
+  class: org.apache.kafka.connect.file.FileStreamSinkConnector
+  tasksMax: 1
+  config:
+    file: "/tmp/output.txt"
+    topics: "my-topic"
+    errors.tolerance: "all"
+    errors.deadletterqueue.topic.name: "my-dlq-topic"
+    errors.deadletterqueue.context.headers.enable: true
+    errors.log.enable: true
+    errors.log.include.messages: true
