@@ -5,6 +5,7 @@ metadata:
   labels:
     strimzi.io/cluster: my-connect-cluster
 spec:
+  # resource spec: https://strimzi.io/docs/operators/latest/configuring.html#type-KafkaConnectorSpec-reference
   class: org.apache.kafka.connect.file.FileStreamSinkConnector
   tasksMax: 1
   config:
