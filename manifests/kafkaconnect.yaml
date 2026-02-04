@@ -17,6 +17,7 @@ spec:
     trustedCertificates:
       - secretName: my-cluster-cluster-ca-cert
         pattern: "*.crt"
+  # resource specification: https://strimzi.io/docs/operators/latest/configuring.html#type-KafkaConnectSpec-schema-reference 
   config:
     config.storage.replication.factor: -1
     offset.storage.replication.factor: -1

@@ -12,10 +12,13 @@ tasks:
   lab:
     cmds:
       - echo "poc lab commands"
+      - make all
       - helm repo add strimzi https://strimzi.io/charts/
       - helm install strimzi/strimzi-kafka-operator --generate-name
       - kubectl apply -f ./manifests/kafka-ephemeral.yaml
       - kubectl apply -f ./manifests/kafka-topic.yaml
+      - kubectl apply -f ./manifests/kafkaconnect.yaml
+      - kubectl apply -f ./manifests/kafkaconnector.yaml
       - echo "try using the producer and the consumer scripts in the ./hack folder"
 #      - kubectl apply -f kafkaConnect.yaml
 #      - kubectl apply -f kafkaConnector.yaml
