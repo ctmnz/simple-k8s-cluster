@@ -16,6 +16,9 @@ tasks:
       - helm install kps oci://ghcr.io/prometheus-community/charts/kube-prometheus-stack
       - echo "Priting the admin password:"
       - kubectl --namespace default get secrets kps-grafana -o jsonpath="{.data.admin-password}" | base64 -d ; echo
+  docker:
+    cmds:
+      - docker run -p 3000:3000 -p 4317:4317 -p 4318:4318 --rm -ti grafana/otel-lgtm
   test:
     cmds:
       - echo "tests commmands"
